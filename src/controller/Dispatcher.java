@@ -1,41 +1,33 @@
 package controller;
 
-import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class Dispatcher<E> implements Runnable {
-	private ArrayList<E> employees = new ArrayList<E>();
+import model.Call;
 
+public class Dispatcher<E> {
+	private static final int MAX_NUMBER_SIM_CALLS = 10;
+	private ExecutorService executor;
+	EmployeeController employeeController;
+	
 	public Dispatcher() {
-		/*
-		 * Employee e1 = new Employee("Juan"); Employee e2 = new
-		 * Employee("Ramon"); Employee e3 = new Employee("Luis"); for (E e :
-		 * employees) { employees.add(e); }
-		 */
+		executor = Executors.newFixedThreadPool(MAX_NUMBER_SIM_CALLS);
+		
+		//TODO Fix this to be able to validate employee avail
+		//employeeController = new EmployeeController();
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
+	// a new customer calls
+	public void dispatch(long customerCallId) {
+		Runnable call = new Call(customerCallId);
+		executor.execute(call);
 	}
 
-	public void dispatch() {
-
-		for (E e : employees) {
-			// queue.add(e);
-		}
-
+	public void terminateDispatch() throws InterruptedException {
+		executor.shutdown();
+		executor.awaitTermination(11, TimeUnit.SECONDS);
+		System.out.println("Finished all threads");
 	}
 
-	/*
-	 * public static void main(String[] args) { final BlockingQueue<> queue =
-	 * new ArrayBlockingQueue<E>(1000); Dispatcher d = new Dispatcher();
-	 * d.dispatch(); ExecutorService threadPool =
-	 * Executors.newFixedThreadPool(10);
-	 * 
-	 * threadPool.execute(d);
-	 * 
-	 * 
-	 * }
-	 */
 }
