@@ -26,9 +26,9 @@ $ mvn clean package
 Repositorio https://github.com/jbarrionuevo/cc-emc-01.git
 ```
 
-##Consigna
+###Consigna
 
-###Descripción
+####Descripción
 
 Existe un call center donde hay 3 tipos de empleados: operador,
 supervisor y director. El proceso de la atención de una llamada
@@ -36,7 +36,7 @@ telefónica en primera instancia debe ser atendida por un operador, si
 no hay ninguno libre debe ser atendida por un supervisor, y de no
 haber tampoco supervisores libres debe ser atendida por un director.
 
-###Requerimientos
+####Requerimientos
 
 1. Diseñar el modelado de clases y diagramas UML necesarios
 para documentar y comunicar el diseño.
@@ -49,7 +49,7 @@ asigne a los empleados disponibles.
 segundos.
 5. Debe tener un test unitario donde lleguen 10 llamadas.
 
-###Extras/Plus
+####Extras/Plus
 
 1. Dar alguna solución sobre qué pasa con una llamada cuando no
 hay ningún empleado libre.
@@ -58,7 +58,7 @@ entran más de 10 llamadas concurrentes.
 3. Agregar los tests unitarios que se crean convenientes.
 4. Agregar documentación de código.
 
-###Tener en Cuenta
+####Tener en Cuenta
 
 1. El proyecto debe ser creado con Maven.
 2. De ser necesario, anexar un documento con la explicación del
