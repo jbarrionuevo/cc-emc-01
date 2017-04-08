@@ -30,7 +30,7 @@ public class DispatcherTest {
 		//TODO change test so calls are done by different customers
 		for (int customerCallId = 1; customerCallId <= numberOfCalls; customerCallId++) {
 			// calls the dispatcher to route the call
-			d.dispatch(customerCallId, c1);
+			d.dispatchCall(customerCallId, c1);
 		}
 		d.terminateDispatch();
 		// assertEquals("Different employees");

@@ -33,7 +33,7 @@ public class Dispatcher<E> {
 	}
 
 	// a new customer calls
-	public void dispatch(long customerCallId, Customer customer) {
+	public void dispatchCall(long customerCallId, Customer customer) {
 		// if there is an employee available then starts a call
 		Employee nextAvailableEmployee = employeeController.getNextAvailableEmployee();
 		if (nextAvailableEmployee != null) {
