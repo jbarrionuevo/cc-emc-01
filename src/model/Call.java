@@ -17,7 +17,7 @@ public class Call implements Runnable {
 
 	@Override
 	public void run() {
-		int threadDuration = getRandomDuration(5, 10) * 1000;
+		int threadDuration = getRandomDuration(5, 11) * 1000;
 		System.out.println("Call started #" + id + " -Duration= " + threadDuration + " -StartTime= "
 				+ LocalDateTime.now() + " -Customer= " + customer.getName() + " -Employee= " + employee.getName());
 		try {

@@ -21,12 +21,29 @@ public class Dispatcher<E> {
 		Employee s1 = new Employee("Laurent", "supervisor");
 		Employee d1 = new Employee("Rolph", "director");
 		Employee o1 = new Employee("Celeste", "operator");
+		Employee s2 = new Employee("Laurent", "supervisor");
+		Employee o2 = new Employee("Rolph", "operator");
+		Employee o3 = new Employee("Ramon", "operator");
+		Employee o4 = new Employee("Cecil", "operator");
+		Employee o5 = new Employee("Keith", "operator");
+		Employee o6 = new Employee("Ramiro", "operator");
+		Employee o7 = new Employee("Charles", "operator");
+		Employee o8 = new Employee("Robert", "operator");
+		Employee o9 = new Employee("Zoe", "operator");
 
 		CallCenter<Employee> callCenter = new CallCenter<Employee>();
 
 		callCenter.addEmployeeToShift(s1);
 		callCenter.addEmployeeToShift(d1);
 		callCenter.addEmployeeToShift(o1);
+		callCenter.addEmployeeToShift(o2);
+		callCenter.addEmployeeToShift(o3);
+		callCenter.addEmployeeToShift(o4);
+		callCenter.addEmployeeToShift(o5);
+		callCenter.addEmployeeToShift(o6);
+		callCenter.addEmployeeToShift(o7);
+		callCenter.addEmployeeToShift(o8);
+		callCenter.addEmployeeToShift(o9);
 
 		employeeController = new EmployeeController(callCenter);
 		// TODO Fix this to be able to validate employee avail
