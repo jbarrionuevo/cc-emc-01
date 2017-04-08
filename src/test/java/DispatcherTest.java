@@ -1,12 +1,12 @@
-package test;
+package test.java;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.Dispatcher;
-import model.Customer;
-import model.Employee;
+import main.java.controller.Dispatcher;
+import main.java.model.Customer;
+import main.java.model.Employee;
 
 public class DispatcherTest {
 	Dispatcher d;

@@ -1,4 +1,4 @@
-package test;
+package test.java;
 
 import static org.junit.Assert.*;
 
@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.EmployeeController;
-import model.CallCenter;
-import model.Employee;
+import main.java.controller.EmployeeController;
+import main.java.model.CallCenter;
+import main.java.model.Employee;
 
 public class EmployeeTest {
 	Employee o1, o2, o3, s1, s2, d1;

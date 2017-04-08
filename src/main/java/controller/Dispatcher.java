@@ -1,13 +1,13 @@
-package controller;
+package main.java.controller;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import model.Call;
-import model.CallCenter;
-import model.Customer;
-import model.Employee;
+import main.java.model.Call;
+import main.java.model.CallCenter;
+import main.java.model.Customer;
+import main.java.model.Employee;
 
 public class Dispatcher<E> {
 	private static final int MAX_NUMBER_SIM_CALLS = 10;

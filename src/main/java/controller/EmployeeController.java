@@ -1,13 +1,13 @@
-package controller;
+package main.java.controller;
 
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.CallCenter;
-import model.Employee;
-import model.EmployeeTypeTable;
+import main.java.model.CallCenter;
+import main.java.model.Employee;
+import main.java.model.EmployeeTypeTable;
 
 public class EmployeeController {
 
