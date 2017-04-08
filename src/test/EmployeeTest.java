@@ -36,7 +36,7 @@ public class EmployeeTest {
         callCenter.addEmployeeToShift(d1);
         ec = new EmployeeController(callCenter);
     }	
-
+	
 	@Test
 	public void isSameEmployee() {
 		assertEquals("Different employees", o1 , o1);
@@ -60,9 +60,15 @@ public class EmployeeTest {
 		assertEquals("Not the right number of directors", callCenter.getAllEmployeesInShift().get("director").size(), 1);
 	}
 	
-	
 	@Test
 	public void getAvailableEmployee() throws InterruptedException {
-		assertNotNull(ec.getNextAvailableEmployee());
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Raul");
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Octavio");
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Celeste");
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Carlos");
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Claudia");
+		assertEquals(ec.getNextAvailableEmployee().getName(), "Matias");
+		
 	}
+
 }
