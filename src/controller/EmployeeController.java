@@ -1,51 +1,55 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 import model.CallCenter;
 import model.Employee;
+import model.EmployeeTypeTable;
 
 public class EmployeeController {
 
 	CallCenter<Employee> callCenter;
-	Deque<Employee> shiftEmployees = callCenter.getAllEmployeesInShift();
-
-	public EmployeeController() {
-		// TODO implement singleton
-		// callCenter=CallCenter.getInstance();
-	}
-
-	//TODO Finish employee asignation
-	//Should be concurrent?
-	public Employee getNextAvailableEmployee(String t) {
-		Deque<Employee> shiftEmployees = callCenter.getAllEmployeesInShift();
-		// TODO intelligence to get by priority
-		Employee e = shiftEmployees.getFirst();
-
-		return e;
+	Map<String, Deque<Employee>> shiftEmployees;
+	
+	public EmployeeController(CallCenter<Employee> cc) {
+		callCenter = cc;
+		shiftEmployees = cc.getAllEmployeesInShift();
 	}
 	
-	//TODO Finish employee asignation
-	//Should be concurrent?
-	private Employee getNextAvailableEmployeeByType(String type) {
-		Deque<Employee> shiftEmployees = callCenter.getAllEmployeesInShift();
+	
+	
+	public Employee getNextAvailableEmployee() {
 		Employee e = null;
-		int i = 0;
-		while (i < shiftEmployees.size()) {
-			// retrieves and removes the head of the list
-			e = shiftEmployees.poll();
-			// if employee type is expected and is available
-			if (e.getType().equals(type) && e.getStatus().equals("available")) {
-				e.setStatus("unavailable");
-				// send employee to the tail
-				shiftEmployees.offer(e);
-				break;
-			} else {
-				// not found, then send to bottom and keep searching
-				shiftEmployees.offer(shiftEmployees.poll());
+		boolean found = false;
+		//traverse until found
+		int typeEmployeeIndex = 0;
+		//traverse employee map
+		while (typeEmployeeIndex<shiftEmployees.size() && found==false) {
+			int y = 0;
+			//traverse the employee type deque
+			Deque<Employee> employeesOfType = shiftEmployees.get(EmployeeTypeTable.employeeTypes[typeEmployeeIndex]);
+			while (y<employeesOfType.size()) {
+				e =  employeesOfType.peek();
+				//if available, removes head and points to last
+				if(e.getStatus().equals("available")){
+					e = employeesOfType.poll();
+					employeesOfType.offer(e);
+					found = true;
+					break;
+				}
+				else{
+					e=null;
+					y++;
+				}
+				
 			}
-			i++;
+			typeEmployeeIndex++;
 		}
+		
 		return e;
 	}
+
 }

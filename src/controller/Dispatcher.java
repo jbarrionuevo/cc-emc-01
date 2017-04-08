@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import model.Call;
+import model.Employee;
 
 public class Dispatcher<E> {
 	private static final int MAX_NUMBER_SIM_CALLS = 10;
