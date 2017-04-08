@@ -1,28 +1,28 @@
 package model;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Random;
 
 public class Call implements Runnable {
 	private long id;
 	private Employee employee;
+	private Customer customer;
 
-	public Call(long l) {
+	public Call(long l, Customer c, Employee e) {
 		id = l;
-	}
-
-	public void assignEmployee(Employee e) {
-		synchronized (this) {
-			employee = e;
-		}
-
+		employee = e;
+		customer = c;
 	}
 
 	@Override
 	public void run() {
 		int threadDuration = getRandomDuration(5, 10) * 1000;
-		System.out.println("Call executed #" + id + " ---Duration= " + threadDuration);
+		System.out.println("Call started #" + id + " -Duration= " + threadDuration + " -StartTime= "
+				+ LocalDateTime.now() + " -Customer= " + customer.getName() + " -Employee= " + employee.getName());
 		try {
 			Thread.sleep(threadDuration);
+			System.out.println("Call ended #" + id + " -EndTime= " + LocalDateTime.now());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
