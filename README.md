@@ -7,8 +7,10 @@ EMC Call Center
 
 ### Explicación de los puntos extra
 
-### Inicialización
+### Otras consideraciones
+1. Las llamadas a System.out se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
 
+### Inicialización
 ```
 $ git clone https://github.com/jbarrionuevo/cc-emc-01.git
 $ mvn clean package

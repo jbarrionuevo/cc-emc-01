@@ -43,15 +43,16 @@ public class MainController<E> {
 		callCenter.addEmployeeToShift(o7);
 		callCenter.addEmployeeToShift(o8);
 		callCenter.addEmployeeToShift(o9);
+		callCenter.addEmployeeToShift(s2);
 		//Create a main controller
 		MainController<Employee> mc = new MainController<>(callCenter);
 		//create customers
 		Customer c1 = new Customer("Claude");
 		Customer c2 = new Customer("John");
 		//run calls
-		mc.dispatcher.dispatchCall(1, c1);
-		mc.dispatcher.dispatchCall(1, c2);
-		mc.dispatcher.terminateDispatch();
+		mc.getDispatcher().dispatchCall(1, c1);
+		mc.getDispatcher().dispatchCall(1, c2);
+		mc.getDispatcher().terminateDispatch();
 		
 	}
 	
