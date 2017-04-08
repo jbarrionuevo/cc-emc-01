@@ -11,11 +11,13 @@ EMC Call Center
 1. Las llamadas a System.out se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
 
 ### Inicialización
+
 ```
 $ git clone https://github.com/jbarrionuevo/cc-emc-01.git
 $ mvn clean package
 
 ```
+
 ### Info util
 
 #### Urls
@@ -23,6 +25,7 @@ $ mvn clean package
 ```
 Repositorio https://github.com/jbarrionuevo/cc-emc-01.git
 ```
+
 ##Consigna
 
 ###Descripción
