@@ -3,7 +3,9 @@ EMC Call Center
 
 # Consideraciones
 
-### Mejoras
+### Diseño
+
+### Explicación de los puntos extra
 
 ### Inicialización
 
@@ -19,7 +21,7 @@ $ mvn clean package
 ```
 Repositorio https://github.com/jbarrionuevo/cc-emc-01.git
 ```
-#Consigna
+##Consigna
 
 ###Descripción
 
