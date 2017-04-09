@@ -20,16 +20,17 @@ public class Dispatcher<E> {
 	private static final int MAX_NUMBER_SIM_CALLS = 10;
 	private ExecutorService executor;
 	private EmployeeController employeeController;
-	// private CallCenter callCenter;
+	private CustomerController customerController;
 
-	public Dispatcher(EmployeeController ec) {
+	public Dispatcher(EmployeeController ec, CustomerController cc) {
 		employeeController = ec;
+		customerController = cc;
 		executor = Executors.newFixedThreadPool(MAX_NUMBER_SIM_CALLS);
-
 	}
 
 	/**
 	 * Runs a call in a new thread if there is an employee available.
+	 * 
 	 * @param customerCallId
 	 * @param customer
 	 */
@@ -39,6 +40,12 @@ public class Dispatcher<E> {
 		if (nextAvailableEmployee != null) {
 			Runnable call = new Call(customerCallId, customer, nextAvailableEmployee);
 			executor.execute(call);
+		}
+		// if no employee is available, returns customer to its container
+		else {
+			System.out.println("No employee available to take the call, please wait. -callID= " + customerCallId + " -customer = "
+					+ customer.getName());
+			customerController.addNextCustomer(customer);
 		}
 	}
 

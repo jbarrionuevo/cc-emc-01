@@ -6,20 +6,31 @@ import main.java.model.Employee;
 
 public class MainController<E> {
 	private EmployeeController employeeController;
+	private CustomerController customerController;
 	private Dispatcher<E> dispatcher;
 	private CallCenter<Employee> callCenter;
 
 	/**
-	 * @param cc
+	 * @param callCenter
 	 */
 	public MainController(CallCenter<Employee> cc) {
 		callCenter = cc;
 		employeeController = new EmployeeController(callCenter);
-		dispatcher = new Dispatcher<E>(employeeController);
+		customerController = new CustomerController(callCenter);
+		dispatcher = new Dispatcher<E>(employeeController, customerController);
+	}
+
+	public void runCallCenter() {
+		int callId = 0;
+		Customer tempCustomer = customerController.getNextCustomer();
+		while (tempCustomer != null) {
+			getDispatcher().dispatchCall(callId, tempCustomer);
+			callId++;
+		}
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		//create Employees
+		// create Employees
 		Employee s1 = new Employee("Laurent", "supervisor");
 		Employee d1 = new Employee("Rolph", "director");
 		Employee o1 = new Employee("Celeste", "operator");
@@ -32,9 +43,9 @@ public class MainController<E> {
 		Employee o7 = new Employee("Charles", "operator");
 		Employee o8 = new Employee("Robert", "operator");
 		Employee o9 = new Employee("Zoe", "operator");
-		//Create Call Center
+		// Create Call Center
 		CallCenter<Employee> callCenter = new CallCenter<Employee>();
-		//Add employees to call center
+		// Add employees to call center
 		callCenter.addEmployeeToShift(s1);
 		callCenter.addEmployeeToShift(d1);
 		callCenter.addEmployeeToShift(o1);
@@ -47,32 +58,32 @@ public class MainController<E> {
 		callCenter.addEmployeeToShift(o8);
 		callCenter.addEmployeeToShift(o9);
 		callCenter.addEmployeeToShift(s2);
-		//Create a main controller
-		MainController<Employee> mc = new MainController<>(callCenter);
-		//create customers
+		// Create a main controller
+		MainController<Employee> mainController = new MainController<>(callCenter);
+		// create customers
 		Customer c1 = new Customer("Claude");
 		Customer c2 = new Customer("John");
-		//run calls
-		mc.getDispatcher().dispatchCall(1, c1);
-		mc.getDispatcher().dispatchCall(2, c2);
-		mc.getDispatcher().dispatchCall(3, c1);
-		mc.getDispatcher().dispatchCall(4, c2);
-		mc.getDispatcher().dispatchCall(5, c1);
-		mc.getDispatcher().dispatchCall(6, c2);
-		mc.getDispatcher().dispatchCall(7, c1);
-		mc.getDispatcher().dispatchCall(8, c2);
-		mc.getDispatcher().dispatchCall(9, c1);
-		mc.getDispatcher().dispatchCall(10, c2);
-		mc.getDispatcher().dispatchCall(11, c1);
-		mc.getDispatcher().dispatchCall(12, c2);
-		mc.getDispatcher().dispatchCall(13, c1);
-		mc.getDispatcher().dispatchCall(14, c2);
-		mc.getDispatcher().dispatchCall(15, c1);
-		mc.getDispatcher().dispatchCall(16, c2);
-		mc.getDispatcher().terminateDispatch();
-		
+		// run calls
+		mainController.getDispatcher().dispatchCall(1, c1);
+		mainController.getDispatcher().dispatchCall(2, c2);
+		mainController.getDispatcher().dispatchCall(3, c1);
+		mainController.getDispatcher().dispatchCall(4, c2);
+		mainController.getDispatcher().dispatchCall(5, c1);
+		mainController.getDispatcher().dispatchCall(6, c2);
+		mainController.getDispatcher().dispatchCall(7, c1);
+		mainController.getDispatcher().dispatchCall(8, c2);
+		mainController.getDispatcher().dispatchCall(9, c1);
+		mainController.getDispatcher().dispatchCall(10, c2);
+		mainController.getDispatcher().dispatchCall(11, c1);
+		mainController.getDispatcher().dispatchCall(12, c2);
+		mainController.getDispatcher().dispatchCall(13, c1);
+		mainController.getDispatcher().dispatchCall(14, c2);
+		mainController.getDispatcher().dispatchCall(15, c1);
+		mainController.getDispatcher().dispatchCall(16, c2);
+		mainController.getDispatcher().terminateDispatch();
+
 	}
-	
+
 	public Dispatcher<E> getDispatcher() {
 		return dispatcher;
 	}

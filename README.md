@@ -4,12 +4,21 @@ EMC Call Center
 # Consideraciones
 
 ### Diseño
+Ver diagrama de clases adjunto.
+### Explicación de los puntos adicionales
+1. Dar alguna solución sobre qué pasa con una llamada cuando no hay ningún empleado libre.
 
-### Explicación de los puntos extra
-2. 
+2. Dar alguna solución sobre qué pasa con una llamada cuando entran más de 10 llamadas concurrentes:
+
+Cuando entran mas de 10 llamadas (hasta cierto numero, ver *2.1) estas seran puestas en una cola de espera hasta que se libere una llamada en curso.Esto lo resuelve el java.util.concurrent.Executors.ExecutorService. Este va a poner en una cola de espera las llamadas nuevas (tasks o runnables), hasta que un thread termine de ejecutar una tarea y se libere un slot del pool. Entonces se ejecuta la primer tarea en la queue y se utiliza en thead disponible (y asi con el resto).
+```
+(*2.1) Si la cantidad de llamadas en espera supera el tamaño del queue del ExecutroService el comportamiento será diferente (se aceptan mas llamadas que las soportadas por el pool hasta llegar al maximo), y será necesaria una solución diferente a la presentada.
+```
+
 ### Otras consideraciones
 1. Las llamadas a System.out para imprimir en consola se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
 2. El código del EmployeeController puede ser mejorado usando streams. (ejemplo en clase EmployeeController, metodo getEmployeesByStatus())
+3. Los tests unitarios pueden mejorarse, reduciendo el código duplicado.
 
 ### Inicialización
 

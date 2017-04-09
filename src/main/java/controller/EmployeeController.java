@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.jsoup.select.Collector;
-
 import main.java.model.CallCenter;
 import main.java.model.Employee;
 import main.java.model.EmployeeTypeTable;
@@ -48,14 +46,11 @@ public class EmployeeController {
 			// traverse the employee type deque
 			Deque<Employee> employeesOfType = shiftEmployees.get(EmployeeTypeTable.employeeTypes[typeEmployeeIndex]);
 			while (y < employeesOfType.size()) {
-				// e = employeesOfType.peek();
 				e = employeesOfType.poll();
 				employeesOfType.offer(e);
 				// if available, removes head and points to last
 				if (e.getStatus().equals("available")) {
 					found = true;
-					// TODO remove next line, the employee status changes when
-					// call starts and end
 					e.setStatus("busy");
 					break;
 				} else {

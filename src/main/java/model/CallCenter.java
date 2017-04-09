@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class CallCenter<E> {
 	private Map<String, Deque<Employee>> employeesInShift;
-
+	private Deque<Customer> queuedCustomers;
+	
 	public CallCenter() {
 		employeesInShift = new HashMap<String, Deque<Employee>>();
 		employeesInShift.put(EmployeeTypeTable.employeeTypes[0], new LinkedList<Employee>());//0 = operator
@@ -21,6 +22,10 @@ public class CallCenter<E> {
 
 	public Map<String, Deque<Employee>> getAllEmployeesInShift() {
 		return employeesInShift;
+	}
+
+	public Deque<Customer> getAllCustomersQueued() {
+		return queuedCustomers;
 	}
 
 }
