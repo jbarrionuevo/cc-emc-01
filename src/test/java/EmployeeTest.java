@@ -24,10 +24,14 @@ public class EmployeeTest {
 	public void setUp() throws Exception {
 		o1 = new Employee("Celeste", "operator");
 		o2 = new Employee("Octavio", "operator");
+		o2.setStatus("busy");
 		o3 = new Employee("Raul", "operator");
+		o3.setStatus("busy");
 		s1 = new Employee("Claudia", "supervisor");
 		s2 = new Employee("Carlos", "supervisor");
+		s2.setStatus("busy");
 		d1 = new Employee("Matias", "director");
+		d1.setStatus("busy");
 		callCenter = new CallCenter<Employee>();
 		callCenter.addEmployeeToShift(o1);
 		callCenter.addEmployeeToShift(o2);
@@ -68,13 +72,27 @@ public class EmployeeTest {
 
 	@Test
 	public void getAvailableEmployee() throws InterruptedException {
-		assertEquals(ec.getNextAvailableEmployee().getName(), "Raul");
-		assertEquals(ec.getNextAvailableEmployee().getName(), "Octavio");
 		assertEquals(ec.getNextAvailableEmployee().getName(), "Celeste");
-		assertEquals(ec.getNextAvailableEmployee().getName(), "Carlos");
 		assertEquals(ec.getNextAvailableEmployee().getName(), "Claudia");
-		assertEquals(ec.getNextAvailableEmployee().getName(), "Matias");
-
 	}
 
+	/**
+	 * Expecting 6 employees busy in the call center shift
+	 * 
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void employeesBusyCount() throws InterruptedException {
+		assertEquals(ec.getEmployeesByStatus("busy").size(), 4);
+	}
+
+	/**
+	 * Expecting 6 employees busy in the call center shift
+	 * 
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void employeesAvailableCount() throws InterruptedException {
+		assertEquals(ec.getEmployeesByStatus("available").size(), 2);
+	}
 }

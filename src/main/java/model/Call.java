@@ -4,6 +4,15 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * Represent a call of random duration between 5 and 10 seconds. A call starts
+ * with run(), is simulated with a thread sleep and when the call finishes, the
+ * employee status is set back to "available" to be able to accept further
+ * calls.
+ * 
+ * @author Jorge
+ *
+ */
 public class Call implements Runnable {
 	private long id;
 	private Employee employee;
@@ -23,6 +32,7 @@ public class Call implements Runnable {
 		try {
 			Thread.sleep(threadDuration);
 			System.out.println("Call ended #" + id + " -EndTime= " + LocalDateTime.now());
+			employee.setStatus("available");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

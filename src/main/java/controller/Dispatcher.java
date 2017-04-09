@@ -8,6 +8,14 @@ import main.java.model.Call;
 import main.java.model.Customer;
 import main.java.model.Employee;
 
+/**
+ * Manages incoming calls. A thread per call is created and a max of 10 threads
+ * is limited in MAX_NUMBER_SIM_CALLS, that will determine the thread pool size.
+ * 
+ * @author Jorge
+ *
+ * @param <E>
+ */
 public class Dispatcher<E> {
 	private static final int MAX_NUMBER_SIM_CALLS = 10;
 	private ExecutorService executor;
@@ -20,7 +28,11 @@ public class Dispatcher<E> {
 
 	}
 
-	// a new customer calls
+	/**
+	 * Runs a call in a new thread if there is an employee available.
+	 * @param customerCallId
+	 * @param customer
+	 */
 	public void dispatchCall(long customerCallId, Customer customer) {
 		// if there is an employee available then starts a call
 		Employee nextAvailableEmployee = employeeController.getNextAvailableEmployee();

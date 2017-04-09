@@ -9,6 +9,9 @@ public class MainController<E> {
 	private Dispatcher<E> dispatcher;
 	private CallCenter<Employee> callCenter;
 
+	/**
+	 * @param cc
+	 */
 	public MainController(CallCenter<Employee> cc) {
 		callCenter = cc;
 		employeeController = new EmployeeController(callCenter);
@@ -51,7 +54,21 @@ public class MainController<E> {
 		Customer c2 = new Customer("John");
 		//run calls
 		mc.getDispatcher().dispatchCall(1, c1);
-		mc.getDispatcher().dispatchCall(1, c2);
+		mc.getDispatcher().dispatchCall(2, c2);
+		mc.getDispatcher().dispatchCall(3, c1);
+		mc.getDispatcher().dispatchCall(4, c2);
+		mc.getDispatcher().dispatchCall(5, c1);
+		mc.getDispatcher().dispatchCall(6, c2);
+		mc.getDispatcher().dispatchCall(7, c1);
+		mc.getDispatcher().dispatchCall(8, c2);
+		mc.getDispatcher().dispatchCall(9, c1);
+		mc.getDispatcher().dispatchCall(10, c2);
+		mc.getDispatcher().dispatchCall(11, c1);
+		mc.getDispatcher().dispatchCall(12, c2);
+		mc.getDispatcher().dispatchCall(13, c1);
+		mc.getDispatcher().dispatchCall(14, c2);
+		mc.getDispatcher().dispatchCall(15, c1);
+		mc.getDispatcher().dispatchCall(16, c2);
 		mc.getDispatcher().terminateDispatch();
 		
 	}

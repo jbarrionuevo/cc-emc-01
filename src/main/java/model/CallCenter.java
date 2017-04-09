@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class CallCenter<E> {
-	// employees can be more than 10
 	private Map<String, Deque<Employee>> employeesInShift;
 
 	public CallCenter() {
@@ -17,7 +16,6 @@ public class CallCenter<E> {
 	}
 
 	public void addEmployeeToShift(Employee e) {
-		e.setStatus("available");
 		employeesInShift.get(e.getType()).push(e);
 	}
 

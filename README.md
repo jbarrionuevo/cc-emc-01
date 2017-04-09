@@ -6,9 +6,10 @@ EMC Call Center
 ### Diseño
 
 ### Explicación de los puntos extra
-
+2. 
 ### Otras consideraciones
-1. Las llamadas a System.out se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
+1. Las llamadas a System.out para imprimir en consola se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
+2. El código del EmployeeController puede ser mejorado usando streams. (ejemplo en clase EmployeeController, metodo getEmployeesByStatus())
 
 ### Inicialización
 
