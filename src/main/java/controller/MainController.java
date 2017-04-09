@@ -20,13 +20,14 @@ public class MainController<E> {
 		dispatcher = new Dispatcher<E>(employeeController, customerController);
 	}
 
-	public void runCallCenter() {
+	public void runCallCenter() throws InterruptedException {
 		int callId = 0;
 		Customer tempCustomer = customerController.getNextCustomer();
 		while (tempCustomer != null) {
 			getDispatcher().dispatchCall(callId, tempCustomer);
 			callId++;
 		}
+		getDispatcher().terminateDispatch();
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -63,24 +64,13 @@ public class MainController<E> {
 		// create customers
 		Customer c1 = new Customer("Claude");
 		Customer c2 = new Customer("John");
+		
+		//add customers to call center
+		callCenter.addCustomer(c1);
+		callCenter.addCustomer(c2);
+		
 		// run calls
-		mainController.getDispatcher().dispatchCall(1, c1);
-		mainController.getDispatcher().dispatchCall(2, c2);
-		mainController.getDispatcher().dispatchCall(3, c1);
-		mainController.getDispatcher().dispatchCall(4, c2);
-		mainController.getDispatcher().dispatchCall(5, c1);
-		mainController.getDispatcher().dispatchCall(6, c2);
-		mainController.getDispatcher().dispatchCall(7, c1);
-		mainController.getDispatcher().dispatchCall(8, c2);
-		mainController.getDispatcher().dispatchCall(9, c1);
-		mainController.getDispatcher().dispatchCall(10, c2);
-		mainController.getDispatcher().dispatchCall(11, c1);
-		mainController.getDispatcher().dispatchCall(12, c2);
-		mainController.getDispatcher().dispatchCall(13, c1);
-		mainController.getDispatcher().dispatchCall(14, c2);
-		mainController.getDispatcher().dispatchCall(15, c1);
-		mainController.getDispatcher().dispatchCall(16, c2);
-		mainController.getDispatcher().terminateDispatch();
+		mainController.runCallCenter();
 
 	}
 

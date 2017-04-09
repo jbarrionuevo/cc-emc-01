@@ -30,7 +30,7 @@ public class DispatcherTest<E> {
 
 	/**
 	 * 100 calls are executed, with a call pool size of 10
-	 * 
+	 * NullPointer expected because this test only implements one employee available to take calls
 	 * @throws InterruptedException
 	 */
 	

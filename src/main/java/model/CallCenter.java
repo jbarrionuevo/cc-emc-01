@@ -11,6 +11,7 @@ public class CallCenter<E> {
 	
 	public CallCenter() {
 		employeesInShift = new HashMap<String, Deque<Employee>>();
+		queuedCustomers = new LinkedList<Customer>();
 		employeesInShift.put(EmployeeTypeTable.employeeTypes[0], new LinkedList<Employee>());//0 = operator
 		employeesInShift.put(EmployeeTypeTable.employeeTypes[1], new LinkedList<Employee>());//1 = supervisor
 		employeesInShift.put(EmployeeTypeTable.employeeTypes[2], new LinkedList<Employee>());//2 = director
@@ -26,6 +27,10 @@ public class CallCenter<E> {
 
 	public Deque<Customer> getAllCustomersQueued() {
 		return queuedCustomers;
+	}
+	
+	public void addCustomer(Customer c) {
+		queuedCustomers.add(c);
 	}
 
 }
