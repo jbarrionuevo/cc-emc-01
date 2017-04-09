@@ -34,7 +34,6 @@ public class DispatcherTest<E> {
 	 * @throws InterruptedException
 	 */
 	
-	@Test(expected=NullPointerException.class)
 	public void runCalls() throws InterruptedException {
 		// simulates numberOfCalls consecutive calls
 		for (int customerCallId = 1; customerCallId <= numberOfCalls; customerCallId++) {
