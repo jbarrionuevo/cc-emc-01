@@ -10,13 +10,13 @@ import main.java.model.Employee;
 
 /**
  * Main test case that runs 10 calls with a MainController and only two
- * available employees to take calls.
+ * available employees to take calls. Tests the no available employee scenario.
  * 
  * @author Jorge
  *
  * @param <E>
  */
-public class CallCenterTwoEmployeesTest<E> {
+public class NoAvailableEmployeeScenarioTest<E> {
 	private MainController<Employee> mainController;
 
 	@Before
