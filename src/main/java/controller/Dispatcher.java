@@ -29,24 +29,30 @@ public class Dispatcher<E> {
 	}
 
 	/**
-	 * Runs a call in a new thread if there is an employee available.
+	 * Runs a call in a new thread if there is an employee available. If there
+	 * is an employee available then starts a call. Otherwise, if no employee is
+	 * available, returns the customer to its container and call will be routed
+	 * again until there is an employee who can attend the call.
 	 * 
 	 * @param customerCallId
 	 * @param customer
 	 */
 	public void dispatchCall(long customerCallId, Customer customer) {
-		// if there is an employee available then starts a call
+		//
 		Employee nextAvailableEmployee = employeeController.getNextAvailableEmployee();
 		if (nextAvailableEmployee != null) {
 			Runnable call = new Call(customerCallId, customer, nextAvailableEmployee);
 			executor.execute(call);
 		}
-		// if no employee is available, returns customer to its container
+
 		else {
-			System.out.println("No employee available to take the call, please wait. -callID= " + customerCallId + " -customer = "
-					+ customer.getName());
+			System.out.println("No employee available, please wait. -callID= " + customerCallId + " -customer = "
+					+ customer.getName() + " number_employees_available= "
+					+ employeeController.getEmployeesByStatus("available").size());
 			customerController.addNextCustomer(customer);
 		}
+		System.out.println("***End dispatchCall -Customer= " + customer.getName() + " Number_employees_available= "
+				+ employeeController.getEmployeesByStatus("available").size());
 	}
 
 	public void terminateDispatch() throws InterruptedException {

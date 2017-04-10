@@ -4,6 +4,14 @@ import main.java.model.CallCenter;
 import main.java.model.Customer;
 import main.java.model.Employee;
 
+/**
+ * This is the main controller, that will run all calls. Each call to be run
+ * needs a customer and a pool of available employees.
+ * 
+ * @author Jorge
+ *
+ * @param <E>
+ */
 public class MainController<E> {
 	private EmployeeController employeeController;
 	private CustomerController customerController;
@@ -20,14 +28,22 @@ public class MainController<E> {
 		dispatcher = new Dispatcher<E>(employeeController, customerController);
 	}
 
+	/**
+	 * Main method to run all calls for the customer and employees defined in
+	 * the CallCenter
+	 * 
+	 * @throws InterruptedException
+	 */
 	public void runCallCenter() throws InterruptedException {
 		int callId = 0;
 		Customer tempCustomer = customerController.getNextCustomer();
 		while (tempCustomer != null) {
 			getDispatcher().dispatchCall(callId, tempCustomer);
 			callId++;
+			tempCustomer = customerController.getNextCustomer();
 		}
 		getDispatcher().terminateDispatch();
+		System.out.println("Terminating dispatch--------------------");
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -64,11 +80,11 @@ public class MainController<E> {
 		// create customers
 		Customer c1 = new Customer("Claude");
 		Customer c2 = new Customer("John");
-		
-		//add customers to call center
+
+		// add customers to call center
 		callCenter.addCustomer(c1);
 		callCenter.addCustomer(c2);
-		
+
 		// run calls
 		mainController.runCallCenter();
 

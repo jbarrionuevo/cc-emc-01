@@ -64,6 +64,10 @@ public class EmployeeController {
 		return e;
 	}
 
+	/**
+	 * @param status
+	 * @return all employees matching the search criteria (status)
+	 */
 	public List<Employee> getEmployeesByStatus(String status) {
 		List<Employee> r = null;
 

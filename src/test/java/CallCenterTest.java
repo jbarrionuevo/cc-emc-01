@@ -8,13 +8,19 @@ import main.java.model.CallCenter;
 import main.java.model.Customer;
 import main.java.model.Employee;
 
+/**
+ * Main test case that runs 10 calls with a MainController.
+ * 
+ * @author Jorge
+ *
+ * @param <E>
+ */
 public class CallCenterTest<E> {
-	MainController<Employee> mainController;
-	private Customer c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11;
+	private MainController<Employee> mainController;
 
 	@Before
 	public void setUp() throws Exception {
-		//create employees
+		// create employees
 		Employee s1 = new Employee("Laurent", "supervisor");
 		Employee s2 = new Employee("Laurent", "supervisor");
 		Employee d1 = new Employee("Rolph", "director");
@@ -27,7 +33,7 @@ public class CallCenterTest<E> {
 		Employee o7 = new Employee("Charles", "operator");
 		Employee o8 = new Employee("Robert", "operator");
 		Employee o9 = new Employee("Zoe", "operator");
-		//create a callcenter and add employees
+		// create a callcenter and add employees
 		CallCenter<Employee> callCenter = new CallCenter<Employee>();
 		callCenter.addEmployeeToShift(s1);
 		callCenter.addEmployeeToShift(s2);
@@ -42,36 +48,35 @@ public class CallCenterTest<E> {
 		callCenter.addEmployeeToShift(o8);
 		callCenter.addEmployeeToShift(o9);
 		// create customers
-		c1 = new Customer("Claude");
-		c2 = new Customer("John");
-		c3 = new Customer("Peter");
-		c4 = new Customer("Alex");
-		c5 = new Customer("Ismael");
-		c6 = new Customer("Tommy");
-		c7 = new Customer("Bruce");
-		c8 = new Customer("Niko");
-		c9 = new Customer("Dave");
-		c10 = new Customer("Danilo");
-		c11 = new Customer("Dany");
-		//create a mein controller
-		mainController= new MainController<>(callCenter);
+		Customer c1 = new Customer("Claude");
+		Customer c2 = new Customer("John");
+		Customer c3 = new Customer("Peter");
+		Customer c4 = new Customer("Alex");
+		Customer c5 = new Customer("Ismael");
+		Customer c6 = new Customer("Tommy");
+		Customer c7 = new Customer("Bruce");
+		Customer c8 = new Customer("Niko");
+		Customer c9 = new Customer("Dave");
+		Customer c10 = new Customer("Danilo");
+		// add customers to call center
+		callCenter.addCustomer(c1);
+		callCenter.addCustomer(c2);
+		callCenter.addCustomer(c3);
+		callCenter.addCustomer(c4);
+		callCenter.addCustomer(c5);
+		callCenter.addCustomer(c6);
+		callCenter.addCustomer(c7);
+		callCenter.addCustomer(c8);
+		callCenter.addCustomer(c9);
+		callCenter.addCustomer(c10);
+		// create a main controller
+		mainController = new MainController<>(callCenter);
 	}
 
 	@Test
-	public void runElevenCalls() throws InterruptedException {
-		//run eleven calls to show behavior
-		mainController.getDispatcher().dispatchCall(1, c1);
-		mainController.getDispatcher().dispatchCall(2, c2);
-		mainController.getDispatcher().dispatchCall(3, c3);
-		mainController.getDispatcher().dispatchCall(4, c4);
-		mainController.getDispatcher().dispatchCall(5, c5);
-		mainController.getDispatcher().dispatchCall(6, c6);
-		mainController.getDispatcher().dispatchCall(7, c7);
-		mainController.getDispatcher().dispatchCall(8, c8);
-		mainController.getDispatcher().dispatchCall(9, c9);
-		mainController.getDispatcher().dispatchCall(10, c10);
-		mainController.getDispatcher().dispatchCall(11, c11);
-		mainController.getDispatcher().terminateDispatch();
+	public void runTenCalls() throws InterruptedException {
+		// run eleven calls to show behavior
+		mainController.runCallCenter();
 	}
 
 }

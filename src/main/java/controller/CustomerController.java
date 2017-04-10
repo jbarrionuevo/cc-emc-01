@@ -7,7 +7,7 @@ import main.java.model.Customer;
 import main.java.model.Employee;
 
 /**
- * This class will provide the functionality to manipulate customers in the
+ * This class provides the functionality to manipulate customers in the
  * model.
  * 
  * @author Jorge
@@ -46,4 +46,5 @@ public class CustomerController {
 	public void addNextCustomer(Customer c) {
 		customers.offerFirst(c);
 	}
+
 }

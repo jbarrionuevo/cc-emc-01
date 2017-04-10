@@ -10,7 +10,6 @@ import main.java.model.CallCenter;
 import main.java.model.Customer;
 import main.java.model.Employee;
 
-
 public class DispatcherTest<E> {
 	Dispatcher<E> d;
 	int numberOfCalls;
@@ -29,22 +28,22 @@ public class DispatcherTest<E> {
 	}
 
 	/**
-	 * 100 calls are executed, with a call pool size of 10
-	 * NullPointer expected because this test only implements one employee available to take calls
+	 * 100 calls are executed, with a call pool size of 10. This test runs all
+	 * calls by the same customer and are assigned to the same employee.
+	 * 
 	 * @throws InterruptedException
 	 */
-	
+
 	public void runCalls() throws InterruptedException {
-		// simulates numberOfCalls consecutive calls
 		for (int customerCallId = 1; customerCallId <= numberOfCalls; customerCallId++) {
-			// calls the dispatcher to route the call
 			d.dispatchCall(customerCallId, c1);
 		}
 		d.terminateDispatch();
 	}
-	
+
 	/**
 	 * only one employee available to take calls
+	 * 
 	 * @throws InterruptedException
 	 */
 	@Test
