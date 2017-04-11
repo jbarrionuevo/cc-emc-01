@@ -7,8 +7,7 @@ import main.java.model.Customer;
 import main.java.model.Employee;
 
 /**
- * This class provides the functionality to manipulate customers in the
- * model.
+ * This class provides the functionality to manipulate customers in the model.
  * 
  * @author Jorge
  *

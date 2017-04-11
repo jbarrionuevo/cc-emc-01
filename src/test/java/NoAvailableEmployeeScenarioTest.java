@@ -9,8 +9,8 @@ import main.java.model.Customer;
 import main.java.model.Employee;
 
 /**
- * Main test case that runs 10 calls with a MainController and only two
- * available employees to take calls. Tests the no available employee scenario.
+ * Main test case that runs 7 calls with a MainController and only two available
+ * employees to take calls. Tests the no available employee scenario.
  * 
  * @author Jorge
  *
@@ -36,9 +36,6 @@ public class NoAvailableEmployeeScenarioTest<E> {
 		Customer c5 = new Customer("Ismael");
 		Customer c6 = new Customer("Tommy");
 		Customer c7 = new Customer("Bruce");
-		Customer c8 = new Customer("Niko");
-		Customer c9 = new Customer("Dave");
-		Customer c10 = new Customer("Danilo");
 		// add customers to call center
 		callCenter.addCustomer(c1);
 		callCenter.addCustomer(c2);
@@ -47,16 +44,20 @@ public class NoAvailableEmployeeScenarioTest<E> {
 		callCenter.addCustomer(c5);
 		callCenter.addCustomer(c6);
 		callCenter.addCustomer(c7);
-		callCenter.addCustomer(c8);
-		callCenter.addCustomer(c9);
-		callCenter.addCustomer(c10);
 		// create a main controller
 		mainController = new MainController<>(callCenter);
 	}
 
-	// @Test
-	public void runTenCalls() throws InterruptedException {
+	/**
+	 * Wait is required so the only 2 available employees are able to attend the
+	 * 7 customer calls defined.
+	 * 
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void runCalls() throws InterruptedException {
 		mainController.runCallCenter();
+		mainController.getDispatcher().terminateDispatch();
 	}
 
 }

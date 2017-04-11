@@ -4,11 +4,13 @@ EMC Call Center
 # Consideraciones
 
 ### Diseño
-Ver diagrama de clases adjunto.
+Ver diagramas de clases y de secuenci adjuntos.
 ### Explicación de los puntos adicionales
 1. Dar alguna solución sobre qué pasa con una llamada cuando no hay ningún empleado libre.
 
-Una instancia de CustomerController es responsable de 
+Cuando no hay ningún empleado libre, se intenta asignar la llamada hasta que el empleado se libera.
+Ver test NoAvailableEmployeeScenarioTest (se reiteran los intentos hasta que todas las llamadas son atendidas).
+
 2. Dar alguna solución sobre qué pasa con una llamada cuando entran más de 10 llamadas concurrentes:
 
 Cuando entran mas de 10 llamadas (hasta cierto numero, ver *2.1) estas seran puestas en una cola de espera hasta que se libere una llamada en curso.Esto lo resuelve el java.util.concurrent.Executors.ExecutorService. Este va a poner en una cola de espera las llamadas nuevas (tasks o runnables), hasta que un thread termine de ejecutar una tarea y se libere un slot del pool. Entonces se ejecuta la primer tarea en la queue y se utiliza en thead disponible (y asi con el resto).
@@ -17,9 +19,22 @@ Cuando entran mas de 10 llamadas (hasta cierto numero, ver *2.1) estas seran pue
 
 
 ### Otras consideraciones
-1. Las llamadas a System.out para imprimir en consola se realizan para demostrar funcionalidad y porque la implementación de logging excede el alcance.  
-2. El código del EmployeeController puede ser mejorado usando streams. (ejemplo en clase EmployeeController, metodo getEmployeesByStatus())
-3. Los tests unitarios pueden mejorarse, reduciendo el código duplicado.
+1. El código del EmployeeController puede ser mejorado usando streams. (ejemplo en clase EmployeeController, metodo getEmployeesByStatus())
+2. Los tests unitarios pueden mejorarse, reduciendo el código duplicado y en algunos casos agregando mas asserts (en lugar de solo hacer llamadas).
+3. La aplicación se ejecuta desde el main method del MainController. Se simula un pool de 2 llamadas.
+4. Las 10 llamadas se simulan en el test runTenCalls en CallCenterTest.
+5. Los diagramas de diseño UML se encuentran en el folder del proyecto llamado "configuration". 
+6. El build de la presente version no presenta errores. Ver detalle:
+
+```	
+	Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+	[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ call-center-emc ---
+	[INFO] Building jar: /Users/Jorge/Developer/dlp/call-center-emc/target/call-center-emc-0.0.1-SNAPSHOT.jar
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 52.131 s
+```
 
 ### Inicialización
 
@@ -69,7 +84,7 @@ entran más de 10 llamadas concurrentes.
 3. Agregar los tests unitarios que se crean convenientes.
 4. Agregar documentación de código.
 
-####Tener en Cuenta
+Tener en Cuenta
 
 1. El proyecto debe ser creado con Maven.
 2. De ser necesario, anexar un documento con la explicación del

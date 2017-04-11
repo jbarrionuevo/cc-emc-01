@@ -29,11 +29,11 @@ public class Call implements Runnable {
 	@Override
 	public void run() {
 		int threadDuration = getRandomDuration(5, 11) * 1000;
-		logger.debug("Started #" + id + " -Duration= " + threadDuration + " -StartTime= " + LocalDateTime.now()
+		logger.info("Started #" + id + " -Duration= " + threadDuration + " -StartTime= " + LocalDateTime.now()
 				+ " -Customer= " + customer.getName() + " -Employee= " + employee.getName());
 		try {
 			Thread.sleep(threadDuration);
-			logger.debug("Ended #" + id + " -EndTime= " + LocalDateTime.now());
+			logger.info("Ended #" + id + " -EndTime= " + LocalDateTime.now());
 			employee.setStatus("available");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

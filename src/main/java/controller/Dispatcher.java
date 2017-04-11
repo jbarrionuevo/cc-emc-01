@@ -50,19 +50,17 @@ public class Dispatcher<E> {
 		}
 
 		else {
-			logger.debug("No employee available to take the call. -callID= " + customerCallId + " -customer = "
+			logger.info("No employee available to take the call. -attempt #= " + customerCallId + " -customer = "
 					+ customer.getName() + " number_employees_available= "
 					+ employeeController.getEmployeesByStatus("available").size());
 			customerController.addNextCustomer(customer);
 		}
-		logger.debug("End dispatchCall -Customer= " + customer.getName() + " Number_employees_available= "
-				+ employeeController.getEmployeesByStatus("available").size());
 	}
 
 	public void terminateDispatch() throws InterruptedException {
 		executor.shutdown();
 		executor.awaitTermination(11, TimeUnit.SECONDS);
-		logger.debug("All threads finished.");
+		logger.info("All threads finished.");
 	}
 
 }
