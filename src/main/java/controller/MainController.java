@@ -43,7 +43,6 @@ public class MainController<E> {
 			tempCustomer = customerController.getNextCustomer();
 		}
 		getDispatcher().terminateDispatch();
-		System.out.println("Terminating dispatch--------------------");
 	}
 
 	public static void main(String[] args) throws InterruptedException {

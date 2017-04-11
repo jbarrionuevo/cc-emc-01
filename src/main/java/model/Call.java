@@ -2,6 +2,8 @@ package main.java.model;
 
 import java.time.LocalDateTime;
 import java.util.Random;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Represent a call of random duration between 5 and 10 seconds. A call starts
@@ -16,6 +18,7 @@ public class Call implements Runnable {
 	private long id;
 	private Employee employee;
 	private Customer customer;
+	private static final Logger logger = LogManager.getLogger("Call");
 
 	public Call(long l, Customer c, Employee e) {
 		id = l;
@@ -26,11 +29,11 @@ public class Call implements Runnable {
 	@Override
 	public void run() {
 		int threadDuration = getRandomDuration(5, 11) * 1000;
-		System.out.println("Call started #" + id + " -Duration= " + threadDuration + " -StartTime= "
-				+ LocalDateTime.now() + " -Customer= " + customer.getName() + " -Employee= " + employee.getName());
+		logger.debug("Started #" + id + " -Duration= " + threadDuration + " -StartTime= " + LocalDateTime.now()
+				+ " -Customer= " + customer.getName() + " -Employee= " + employee.getName());
 		try {
 			Thread.sleep(threadDuration);
-			System.out.println("Call ended #" + id + " -EndTime= " + LocalDateTime.now());
+			logger.debug("Ended #" + id + " -EndTime= " + LocalDateTime.now());
 			employee.setStatus("available");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

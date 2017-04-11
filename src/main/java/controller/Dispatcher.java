@@ -4,6 +4,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import main.java.model.Call;
 import main.java.model.Customer;
 import main.java.model.Employee;
@@ -21,6 +24,7 @@ public class Dispatcher<E> {
 	private ExecutorService executor;
 	private EmployeeController employeeController;
 	private CustomerController customerController;
+	private static final Logger logger = LogManager.getLogger("Dispatcher");
 
 	public Dispatcher(EmployeeController ec, CustomerController cc) {
 		employeeController = ec;
@@ -46,19 +50,19 @@ public class Dispatcher<E> {
 		}
 
 		else {
-			System.out.println("No employee available, please wait. -callID= " + customerCallId + " -customer = "
+			logger.debug("No employee available to take the call. -callID= " + customerCallId + " -customer = "
 					+ customer.getName() + " number_employees_available= "
 					+ employeeController.getEmployeesByStatus("available").size());
 			customerController.addNextCustomer(customer);
 		}
-		System.out.println("***End dispatchCall -Customer= " + customer.getName() + " Number_employees_available= "
+		logger.debug("End dispatchCall -Customer= " + customer.getName() + " Number_employees_available= "
 				+ employeeController.getEmployeesByStatus("available").size());
 	}
 
 	public void terminateDispatch() throws InterruptedException {
 		executor.shutdown();
 		executor.awaitTermination(11, TimeUnit.SECONDS);
-		System.out.println("Finished all threads");
+		logger.debug("All threads finished.");
 	}
 
 }
