@@ -1,6 +1,7 @@
 package main.java.controller;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
 import java.util.Map;
@@ -36,32 +37,32 @@ public class EmployeeController {
 	 *         available and will reassign it to the end of the list)
 	 */
 	public Employee getNextAvailableEmployee() {
-		Employee e = null;
+		Employee tempEmployee = null;
 		boolean found = false;
 		// traverse until found
-		int typeEmployeeIndex = 0;
+		int typeOfEmployeeIndex = 0;
 		// traverse employee map
-		while (typeEmployeeIndex < shiftEmployees.size() && found == false) {
-			int y = 0;
+		while (typeOfEmployeeIndex < shiftEmployees.size() && found == false) {
+			int employeeIndex = 0;
 			// traverse the employee type deque
-			Deque<Employee> employeesOfType = shiftEmployees.get(EmployeeTypeTable.employeeTypes[typeEmployeeIndex]);
-			while (y < employeesOfType.size()) {
-				e = employeesOfType.poll();
-				employeesOfType.offer(e);
+			Deque<Employee> employeesOfType = shiftEmployees.get(EmployeeTypeTable.employeeTypes[typeOfEmployeeIndex]);
+			while (employeeIndex < employeesOfType.size()) {
+				tempEmployee = employeesOfType.poll();
+				employeesOfType.offer(tempEmployee);
 				// if available, removes head and points to last
-				if (e.getStatus().equals("available")) {
+				if (tempEmployee.getStatus().equals("available")) {
 					found = true;
-					e.setStatus("busy");
+					tempEmployee.setStatus("busy");
 					break;
 				} else {
-					e = null;
-					y++;
+					tempEmployee = null;
+					employeeIndex++;
 				}
 
 			}
-			typeEmployeeIndex++;
+			typeOfEmployeeIndex++;
 		}
-		return e;
+		return tempEmployee;
 	}
 
 	/**
@@ -69,12 +70,12 @@ public class EmployeeController {
 	 * @return all employees matching the search criteria (status)
 	 */
 	public List<Employee> getEmployeesByStatus(String status) {
-		List<Employee> r = null;
+		List<Employee> filteredEmployees = null;
 
-		r = shiftEmployees.values().stream().flatMap(Collection::stream).filter(x -> status.equals(x.getStatus()))
-				.collect(Collectors.toList());
+		filteredEmployees = shiftEmployees.values().stream().flatMap(Collection::stream)
+				.filter(x -> status.equals(x.getStatus())).collect(Collectors.toList());
 
-		return r;
+		return Collections.unmodifiableList(filteredEmployees);
 	}
 
 }
