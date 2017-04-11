@@ -1,5 +1,12 @@
 package main.java.model;
 
+/**
+ * Employee has a status (busy or available) and a type (operator, supervisor or
+ * director)
+ * 
+ * @author Jorge
+ *
+ */
 public class Employee extends Person {
 	private String status;
 	private String type;
@@ -10,7 +17,6 @@ public class Employee extends Person {
 		status = "available";
 	}
 
-	// an employee can be available or busy
 	public void setStatus(String status) {
 		this.status = status;
 	}
